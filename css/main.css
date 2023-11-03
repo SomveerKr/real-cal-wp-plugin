@@ -1,0 +1,148 @@
+/* Main  */
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 80px;
+    width: 100%;
+  }
+  .sel-cal{
+    width: 35%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+   
+    justify-content: center;
+   
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 73, 110, 0.200);
+  }
+  .sel-cal button {
+    width: 50%;
+    padding: 15px 0;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .sel-cal-clicked{
+    border: 1px solid #00496e;
+    background: #00496e;
+    color: #fff;
+  }
+  
+  .sel-cal-unclicked{
+    border: 1px solid #fff;
+    background: #fff;
+    color:#00496e ;
+  }
+  .sel-cal-unclicked:hover{
+    border: 1px solid #00496e;
+  }
+  /* Cal section */
+  .cal-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+  }
+  /* Basic cal */
+  #change-cal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .left, .right{
+    width: 30%;
+  }
+  .left input{
+    width: 80%;
+  }
+  .middle{
+    width: 40%;
+  }
+  /* .middle canvas {
+    width: 90%;
+  } */
+  @media screen and (max-width:1160px){
+
+    .left {
+      width: 50%;
+    }
+    .middle{
+      width: 50%;
+    }
+  
+  }
+  @media screen and (max-width:950px){
+    
+    .sel-cal{
+      width: 45%;
+    }
+  }
+
+  @media screen and (max-width:820px){
+    .left {
+      width: 40%;
+    }
+    .middle{
+      width: 60%;
+    }
+
+    .left input{
+      width: 100%;
+    }
+
+    main{
+      padding: 20px 60px;
+    }
+  }
+  @media screen and (max-width:700px){
+    
+    #change-cal{
+      flex-direction: column;
+      align-items: center;
+    }
+    .left, .middle{
+      width: 80%;
+    }
+    .left input{
+      width: 90%;
+    }
+    .sel-cal{
+      width: 60%;
+    }
+  }
+  @media screen and (max-width:560px){
+
+    .middle{
+      width:100%;
+    }
+   
+    .left h1{
+      font-size: 20px;
+    }
+    main{
+      padding: 20px 40px;
+    }
+    .sel-cal{
+      width: 70%;
+    }
+  }
+  @media screen and (max-width:420px){
+    main{
+      padding: 20px;
+    }
+    .left{
+      width: 100%;
+    }
+    .sel-cal{
+      width: 80%;
+    }
+  }
+ 

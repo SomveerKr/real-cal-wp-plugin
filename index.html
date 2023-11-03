@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/inputs.css">
+    <link rel="stylesheet" href="css/chart.css">
+    <link rel="stylesheet" href="css/notes.css">
+    <link rel="stylesheet" href="css/advancedCal/sliders.css">
+    <!-- Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Real Estate Cash Flow Calculator</title>
+    <!-- For Notes section -->
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
+
+</head>
+
+<body >
+
+    <main class="main">
+        <!-- For Selecting basic and advanced Cal -->
+        <div class="sel-cal">
+            <button id="show-basic-cal" class="sel-cal-clicked">Basic</button>
+            <button id="show-advanced-cal" class="sel-cal-unclicked">Advanced</button>
+        </div>
+
+        <!-- Section for displaying Cal -->
+        <section class="cal-section">
+
+            <!-- Basic Cal and adavnced cal -->
+            <div id="change-cal" class="basic-cal">
+                <!-- Inputs section for Cal -->
+                <div class="left">
+                        <h1>Enter Your Details(monthly)</h1>
+                        <!-- Cashflow Cal inputs -->
+                        <div class="cashflow-inputs">
+                            <label for="monthly-income">Rental Income:</label>
+                            <span class="input-symbol-dollar">
+                                <input type="text" id="monthly-income" name="monthly-income" step="1" value='1372' >
+                            </span>
+                            <!-- Slider -->
+                            <input type="range" id="monthly-income-slider" class="input-slider" min="0" max="200000"
+                            step="1">
+
+                            <label for="mortgage-payment">Mortgage Payment:</label>
+                            <span class="input-symbol-dollar">
+                                <input type="text" id="mortgage-payment" name="mortgage-payment" step="1" value='2317'>
+                            </span>
+                            <!-- Slider -->
+                            <input type="range" id="mortgage-payment-slider" class="input-slider" min="0" max="400000"
+                            step="1">
+
+                            <label for="property-taxes">Property taxes:</label>
+                            <span class="input-symbol-dollar">
+                                <input type="text" id="property-taxes" name="property-taxes" step="1" value='224'>
+                            </span>
+                            
+                            <!-- Slider -->
+                            <input type="range" id="property-taxes-slider" class="input-slider" min="0" max="400000" step="1">
+                            
+                            <label for="property-insurance">Property insurance:</label>
+                            <span class="input-symbol-dollar">
+                                <input type="text" id="property-insurance" name="property-insurance" step="1" value='152'>
+                            </span>
+                            <!-- Slider -->
+                            <input type="range" id="property-insurance-slider" class="input-slider" min="0" max="20000"
+                            step="1">
+                            
+                            <label for="property-management-fees">Property management fees:</label>
+                            
+                                <input type="text" id="property-management-fees" name="property-management-fees" step="0.1" value='10'>
+                            
+                            <!-- Slider -->
+                            <input type="range" id="property-management-fees-slider" class="input-slider" min="0"
+                            max="30" step="0.01">
+                            
+                            <label for="maintenance-costs">Maintenance costs:</label>
+                            <span class="input-symbol-dollar">
+                                <input type="text" id="maintenance-costs" name="maintenance-costs" step="1" value='320'>
+                            </span>
+                            <!-- Slider -->
+                            <input type="range" id="maintenance-costs-slider" class="input-slider" min="0" max="10000"
+                            step="1">
+                            
+                            <label for="other-expenses">Other expenses:</label>
+                            <span class="input-symbol-dollar">
+                                <input type="text" id="other-expenses" name="other-expenses" step="1" value='412' >
+                            </span>
+                            <!-- Slider -->
+                            <input type="range" id="other-expenses-slider" class="input-slider" min="0" max="40000"
+                            step="1">
+                            
+                           
+                           
+
+
+                        </div>
+                    
+                </div>
+    
+                <div class="middle">
+                    <button id="open-notesSection-modal">Your Notes</button>
+                    <!-- Notes -->
+                    <dialog id="modal-notes-section">
+                        <div class="notes-section">
+                            <div class="notes-header">
+                                <h1>Notes:</h1> 
+                                <div id="close-notes-modal">
+                                    <img src="./images/remove-icon.png" alt="remove-icon">
+                                </div>
+                            </div>
+        
+                            <div class="notes">
+                                <input id="m-noteTitle" type="text" placeholder="Note Title">
+                                <textarea id="m-noteContent" rows="5" cols="20" placeholder="Write your Note"></textarea>
+                                <button onclick="saveNote()">Save</button>
+                            </div>
+                            <div>
+                                <p id="m-notesCount">0 Notes Found</p>
+        
+                                <!-- Note Display -->
+                                <div id="m-display-noteBox" class="note">
+                                    <!-- For Dynamically displaying note -->
+                                </div>
+                            </div>
+                        </div>
+        
+                    </dialog>
+                    <!-- chart of cashflow output -->
+                    <canvas id="chart-cashflow"></canvas>
+                    <!-- Details of cashflow output -->
+                    <div id="details-cashflow">
+                        <p class="details-cashflow-title">Real Estate Cash Flow Details</p>
+                        <div class="rent-details">
+                            <h4 class="rent-details-txt">Monthly Rental Income:- </h4>
+                            <div id="monthlyIncomeDiv" class="rent-details-value">$ <span></span></div>
+                        </div>
+                        <div class="rent-details">
+                            <h4 class="rent-details-txt">Gross Monthly Expenses:- </h4>
+                            <div id="monthlyExpensesDiv" class="rent-details-value">$ <span></span></div>
+                        </div>
+                        <div class="rent-details">
+                            <h4 class="rent-details-txt">Monthly Cash Flow:-</h4>
+                            <div id="monthlyCashflowDiv" class="rent-details-value">$ <span></span></div>
+                        </div>
+                        <div class="rent-details">
+                            <h4 class="rent-details-txt">Yearly Cash Flow:-</h4>
+                            <div id="yearlyCashflowDiv" class="rent-details-value">$ <span></span></div>
+                        </div>
+                        
+                    </div>
+
+    
+                    <div class="sel-over-chart">
+                        <button id="show-overview-btn" class="over-chart-clicked">Overview</button>
+                        <button id="show-details-btn" class="over-chart-unclicked">Details</button>
+                    </div>
+
+
+                </div>
+
+                <!-- Right Part i.e the Notes Section -->
+                <div id="notes-section" class="right">
+                    <h1>Notes:</h1>
+                    <div class="notes">
+                        <input id="noteTitle" type="text" placeholder="Note Title">
+                        <textarea id="noteContent" rows="5" cols="20" placeholder="Write your Note"></textarea>
+                        <button onclick="saveNote()">Save</button>
+                    </div>
+                    <div>
+                        <p id="notesCount">0 Notes Found</p>
+
+                        <!-- Note Display -->
+                        <div id="display-note-box" class="note">
+                            <!-- For Dynamically displaying note -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+           
+
+            
+        </section>
+    </main>
+
+    <footer>
+        &copy;2023 <em>REAL ESTATE CASH FLOW CALCULATOR</em>
+    </footer>
+
+
+    <!-- JS -->
+    <script src="js/notes.js"></script>
+    <script src="js/selectCal.js"></script>
+    <script src="js/inputSection.js"></script>
+    <script src="js/chartAndDetails.js"></script>
+    <script src="js/modalNotes.js"></script>
+ 
+    <script type="module" src="js/getUserLocation.js"></script>
+  
+    
+    
+    
+</body>
+
+</html>

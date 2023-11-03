@@ -1,0 +1,31 @@
+
+.input-symbol-dollar {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .input-symbol-dollar::before {
+    content: "$";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  .cashflow-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .cashflow-inputs label {
+    margin-bottom: -15px;
+  }
+  .cashflow-inputs input {
+    
+    font-size: 16px;
+    padding: 9px 10px 9px 21px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-weight: 500;
+  }
